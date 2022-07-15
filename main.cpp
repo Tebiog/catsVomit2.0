@@ -7,19 +7,18 @@
 int main()
 {
 	Tasks tasks;
+	tasks.GetDataFromFolder();
 	time_t curr_time = time(NULL);
 	tm* tm_gmt = gmtime(&curr_time);
 
 
-	Task task("2022.06.12 13:31", "calc", TaskType::command);
+	Task task("2022.06.12 13:31", "devenv", TaskType::command);
 	tasks.AddTask(task);
 	time_t tmp = tasks.GetFirstTask().GetTime();
 	tm* tpmtm = gmtime(&tmp);
 	std::cout << tpmtm->tm_min << std::endl;
+	
 
-	tasks.GetDataFromFolder();
-
-	//	tasks.PlayTask();
 	while (true)
 	{
 		curr_time = time(NULL);
@@ -37,8 +36,3 @@ int main()
 	}
 	return 0;
 }
-/*
-	ПРОБЛЕМЫ:
-
-
-*/

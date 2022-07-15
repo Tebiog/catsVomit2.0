@@ -4,6 +4,11 @@
 #include <SFML/Audio.hpp> // audio
 #include <fstream>
 #include <string>
+#include <nlohmann/json.hpp>
+#include <filesystem>
+
+using namespace nlohmann;
+
 enum class TaskType {
 	command,
 	sound,
@@ -69,6 +74,9 @@ public:
 	time_t GetTime() {
 		return taskTime;
 	}
+	tm* GetNormalTime() {
+		return gmtime(&taskTime);
+	}
 	std::string GetCommand() {
 		return command;
 	}
@@ -89,10 +97,11 @@ public:
 	}
 	void AddTask(Task _task) {
 		tasks.push_back(_task);
-
+		std::string filename = std::to_string(_task.GetNormalTime()->tm_mday) + std::to_string(_task.GetNormalTime()->tm_hour) + std::to_string(_task.GetNormalTime()->tm_min) + _task.GetCommand();
+		SerializeIntoJson(_task, filename);
 	}
 	void RemoveFirstTask() {
-		tasks.erase(tasks.begin()); 
+		tasks.erase(tasks.begin());
 	}
 	int getCoutOfTasks() {
 		return tasks.size();
@@ -123,7 +132,29 @@ public:
 		RemoveFirstTask();
 	}
 	void GetDataFromFolder() {
-		std::string path = "../tasks";
+		std::string path = "Tasks";
+		for (const auto& entry : std::filesystem::directory_iterator(path)) {
+			std::cout << entry.path() << std::endl;
+			AddTask(DeserializeFromJson(entry.path().u8string()));
+		}
 
+	}
+	void SerializeIntoJson(Task _task, std::string filename) {
+		json task;
+		task["taskTime"] = _task.GetTime();
+		task["command"] = _task.GetCommand();
+		task["type"] = _task.GetType();
+		std::ofstream o("Tasks/"+filename + ".json");
+		o << task << std::endl;
+	}
+	Task DeserializeFromJson(std::string filepath) {
+		std::ifstream i(filepath);
+		json tmp;
+		i >> tmp;
+		return Task(
+			tmp["taskTime"].get<time_t>(),
+			tmp["command"].get<std::string>(),
+			tmp["type"].get<TaskType>()
+		);
 	}
 };
