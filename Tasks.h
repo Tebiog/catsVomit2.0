@@ -6,6 +6,7 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <filesystem>
+#include <stdio.h>
 
 using namespace nlohmann;
 
@@ -94,13 +95,24 @@ public:
 	Task GetFirstTask() {
 		return tasks[0];
 	}
+	void Clear() {
+		std::filesystem::path tmp = std::filesystem::temp_directory_path();
+		std::uintmax_t n = std::filesystem::remove_all("Tasks");
+		std::cout << "Deleted all tasks";
+		tasks.clear();
+	}
 	void AddTask(Task _task) {
 		tasks.push_back(_task);
 		std::string filename = std::to_string(_task.GetNormalTime()->tm_mday) + std::to_string(_task.GetNormalTime()->tm_hour) + std::to_string(_task.GetNormalTime()->tm_min) + _task.GetCommand();
 		SerializeIntoJson(_task, filename);
 	}
 	void RemoveFirstTask() {
+		Task _task = GetFirstTask();
+		std::string filename = std::to_string(_task.GetNormalTime()->tm_mday) + std::to_string(_task.GetNormalTime()->tm_hour) + std::to_string(_task.GetNormalTime()->tm_min) + _task.GetCommand();
+		std::string fullfilename = "Tasks/" + filename + ".json";
+		remove(fullfilename.c_str());
 		tasks.erase(tasks.begin());
+
 	}
 	int getCoutOfTasks() {
 		return tasks.size();
