@@ -21,8 +21,10 @@
   <ItemGroup>
     <ClInclude Include="cApp.h" />
     <ClInclude Include="cMain.h" />
+    <ClInclude Include="Calendar.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Calendar.cpp" />
     <ClCompile Include="cApp.cpp" />
     <ClCompile Include="cMain.cpp" />
   </ItemGroup>

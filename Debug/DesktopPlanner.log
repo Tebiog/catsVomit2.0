@@ -1,2 +1,4 @@
-﻿  cMain.cpp
+﻿  Calendar.cpp
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(340,11): warning C4101: nPanel: неиспользованная локальная переменная
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(141): warning C4715: Date::GetPrevMonthDaysQuantity: значение возвращается не при всех путях выполнения
   DesktopPlanner.vcxproj -> C:\Users\Трюндель\source\repos\DesktopPlanner\Debug\DesktopPlanner.exe

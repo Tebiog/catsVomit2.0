@@ -1,37 +1,8 @@
 ﻿#include "cMain.h"
-//#include <wx/listctrl.h>
 #include <wx/srchctrl.h>
+#include "Calendar.h"
 
-namespace utilityTools
-{
-
-	class ScrolledWidgetsPane : public wxScrolledWindow
-	{
-	public:
-		ScrolledWidgetsPane(wxWindow* parent, wxWindowID id) : wxScrolledWindow(parent, id)
-		{
-			// the sizer will take care of determining the needed scroll size
-			// (if you don't use sizers you will need to manually set the viewport size)
-			wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-
-			// add a series of widgets
-			/*for (int w = 1; w <= 120; w++)
-			{
-				wxButton* b = new wxButton(this, wxID_ANY, wxString::Format(wxT("Button %i"), w));
-				sizer->Add(b, 0, wxALL, 3);
-			}*/
-
-			this->SetSizer(sizer);
-
-			// this part makes the scrollbars show up
-			this->FitInside(); // ask the sizer about the needed size
-			this->SetScrollRate(5, 5);
-			
-		}
-
-	};
-
-	class Day
+	/*class Day
 	{
 	public:
 
@@ -55,56 +26,32 @@ namespace utilityTools
 			currDay = ifCurrDay;
 		}
 
+		wxPanel* GetPanel()
+		{
+			return dayPanel;
+		}
+
+
 		Day(int date, wxWindow* parent)
 		{
-			wxPanel* dayPanel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(74, 37));
+			dayPanel = new wxPanel(parent, date, wxDefaultPosition, wxSize(74, 37));//wxSize(74, 37)//(parent->GetSize() / 10)
+			dayPanel->SetBackgroundColour(wxColour(48, 104, 68));
+			wxStaticText* dayNum = new wxStaticText(dayPanel, wxID_ANY, std::to_string(date), wxDefaultPosition, wxDefaultSize);
+			dayNum->SetForegroundColour(parent->GetBackgroundColour());
 			SetDate(date);
+
 			//checkIfCurrDay
 		}
+
+		~Day()
+		{}
 	private:
 		int date = 0;
-		bool currDay = false;
+		//std::string tDate = "";
 		//TasksList
-	};
-
-	int GetDaysQuantity(const int& month,const int& year)//FillWithDays(int month, int year, wxObject* parent)
-	{
-		if (month > 0 && month < 13)
-		{
-			if (month == 2)
-			{
-				if (year % 4 == 0)
-				{
-					return 29;
-				}
-				else
-				{
-					return 28;
-				}
-			}
-			else
-			{
-				if (month % 2 == 0 && month != 8)//Do not need verific. if October
-				{
-					return 30;
-				}
-				else
-				{
-					return 31;
-				}
-			}
-		}
-		else
-		{
-			//Thow exception
-			return -1;
-		}
-	}
-
-	void FillWithDays(const int& month, const int& year, wxObject* parent)
-	{
-	}
-}
+		bool currDay = false;
+		wxPanel* dayPanel = nullptr;
+	};*/
 
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Planner")//Параметры базового/родительского окна - окно родитель; id онка(wxID_ANY - любой id); заголовок окна.
 {
@@ -149,18 +96,16 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Planner")//Параметры ба�
 
 
 	//====================All_Dates_Container==================
-	//wxPanel* datesPanel = new wxPanel(listPanel, wxID_ANY, wxDefaultPosition, wxSize(740, 370));
-	//datesPanel->SetBackgroundColour(wxColour(24, 44, 37));
-
-	utilityTools::ScrolledWidgetsPane* datesPanel = new utilityTools::ScrolledWidgetsPane(listPanel, wxID_ANY);
+	wxPanel* datesPanel = new wxPanel(listPanel, wxID_ANY, wxDefaultPosition, wxSize(740, 370));
 	datesPanel->SetBackgroundColour(wxColour(24, 44, 37));
 
-	//FillMethodWithDays();
 
+	InitCalendar(2, 2024, datesPanel);
 	//=========================================================
-	 
-	 
+
+
 	//>>=========================================================
+
 
 
 	//>>===================Controls_Container===================
