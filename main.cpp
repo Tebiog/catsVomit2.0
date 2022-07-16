@@ -10,22 +10,27 @@ int main()
 	tasks.GetDataFromFolder();
 	time_t curr_time = time(NULL);
 	tm* tm_gmt = gmtime(&curr_time);
+	time_t tmp;
 
-
-	Task task("2022.06.12 13:31", "devenv", TaskType::command);
+	Task task("2022.07.16 14:38", "calc", TaskType::command);
 	tasks.AddTask(task);
-	time_t tmp = tasks.GetFirstTask().GetTime();
-	tm* tpmtm = gmtime(&tmp);
-	std::cout << tpmtm->tm_min << std::endl;
-	
+	Task task2("2022.07.16 14:39", "calc", TaskType::command);
+	tasks.AddTask(task2);
+
+	tasks.SortTasks();
+	tm* tpmtm;
 
 	while (true)
 	{
+
+		tmp = tasks.GetFirstTask().GetTime();
 		curr_time = time(NULL);
 		tm_gmt = gmtime(&curr_time);
-		std::cout << tm_gmt->tm_min << "\n";
+		std::cout << "Current: " << tm_gmt->tm_mday << tm_gmt->tm_hour << tm_gmt->tm_min << std::endl;
+		std::cout << "Tasks left: " << tasks.getCoutOfTasks() << std::endl;
 		if (tasks.getCoutOfTasks() >= 1) {
-			if (tasks.GetFirstTask().GetTime() <= curr_time) {
+			std::cout << tasks.GetFirstTask().GetTime() << " curr: " << curr_time << std::endl;
+			if (curr_time >= tasks.GetFirstTask().GetTime()) {
 				tasks.PlayTask();
 			}
 			Sleep(60000 - (tm_gmt->tm_sec * 1000));

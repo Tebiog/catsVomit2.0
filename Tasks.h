@@ -39,16 +39,15 @@ public:
 		//converting from str to time_t
 		time_t curr_time = time(NULL);
 		tm* tm_gmt = gmtime(&curr_time);
-		tm_gmt->tm_year += 1900;
 		const char* T = _taskTime.c_str();
 		time_t result = 0;
 		int year = 0, month = 0, day = 0, hour = 0, min = 0;
 		if (sscanf(T, "%4d.%2d.%2d %2d:%2d", &year, &month, &day, &hour, &min) == 5) {
 			struct tm breakdown = { 0 };
 			breakdown.tm_year = year - 1900;
-			breakdown.tm_mon = month;
+			breakdown.tm_mon = month - 1;
 			breakdown.tm_mday = day;
-			breakdown.tm_hour = hour + 2;
+			breakdown.tm_hour = hour - 1;
 			breakdown.tm_min = min;
 			if ((result = mktime(&breakdown)) == (time_t)-1) {
 				fprintf(stderr, "Could not convert time input to time_t\n");
@@ -131,13 +130,25 @@ public:
 		}
 		RemoveFirstTask();
 	}
+	void SortTasks() {
+		Task tmp;
+		for (int i = 0; i < tasks.size(); i++)
+			for (int j = 0; j < tasks.size()-1; j++) {
+				if (tasks[j].GetTime() > tasks[j + 1].GetTime()) {
+					tmp = tasks[j];
+					tasks[j] = tasks[j + 1];
+					tasks[j + 1] = tmp;
+					std::cout << "SORTED" << std::endl;
+				}
+			}
+	}
 	void GetDataFromFolder() {
 		std::string path = "Tasks";
 		for (const auto& entry : std::filesystem::directory_iterator(path)) {
 			std::cout << entry.path() << std::endl;
 			AddTask(DeserializeFromJson(entry.path().u8string()));
 		}
-
+		SortTasks();
 	}
 	void SerializeIntoJson(Task _task, std::string filename) {
 		json task;
