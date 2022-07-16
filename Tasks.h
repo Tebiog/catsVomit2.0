@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>	// vector
 #include <ctime>	//time
-#include <SFML/Audio.hpp> // audio
+#include <Windows.h>
 #include <fstream>
 #include <string>
 #include <nlohmann/json.hpp>
@@ -118,6 +118,15 @@ public:
 			break;
 		case TaskType::sound:
 			std::cout << "Soud is playing" << std::endl;
+			Beep(1568, 200);
+			Beep(1568, 200);
+			Beep(1568, 200);
+			Beep(1245, 1000);
+			Beep(1397, 200);
+			Beep(1397, 200);
+			Beep(1397, 200);
+			Beep(1175, 1000);
+			std::cin.get();
 			//sf::SoundBuffer buffer;
 			//if (!buffer.loadFromFile(task.GetCommand())) {
 			//	break;

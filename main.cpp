@@ -12,10 +12,8 @@ int main()
 	tm* tm_gmt = gmtime(&curr_time);
 	time_t tmp;
 
-	Task task("2022.07.16 14:38", "calc", TaskType::command);
+	Task task("2022.07.16 14:57", "0", TaskType::sound);
 	tasks.AddTask(task);
-	Task task2("2022.07.16 14:39", "calc", TaskType::command);
-	tasks.AddTask(task2);
 
 	tasks.SortTasks();
 	tm* tpmtm;
