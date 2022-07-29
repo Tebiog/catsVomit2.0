@@ -19,14 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Calendar.h" />
     <ClInclude Include="cApp.h" />
     <ClInclude Include="cMain.h" />
-    <ClInclude Include="Calendar.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Day.h" />
+    <ClInclude Include="dPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Calendar.cpp" />
     <ClCompile Include="cApp.cpp" />
     <ClCompile Include="cMain.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Day.cpp" />
+    <ClCompile Include="dPanel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

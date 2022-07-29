@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Calendar">
+      <UniqueIdentifier>{24a4eb8e-a0c6-43a4-b1eb-c9d470c7c749}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Calendar\Date">
+      <UniqueIdentifier>{cc57ec00-29fe-4c21-915a-d2d388dfdf49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Calendar\Visual">
+      <UniqueIdentifier>{5553c95f-16b2-4869-9748-87295560dca2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cApp.h">
@@ -21,8 +30,17 @@
     <ClInclude Include="cMain.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Day.h">
+      <Filter>Calendar\Date</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Calendar\Date</Filter>
+    </ClInclude>
     <ClInclude Include="Calendar.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Calendar\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="dPanel.h">
+      <Filter>Calendar\Visual</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -32,8 +50,20 @@
     <ClCompile Include="cMain.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Calendar.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="Date.cpp">
+      <Filter>Calendar\Date</Filter>
     </ClCompile>
+    <ClCompile Include="Day.cpp">
+      <Filter>Calendar\Date</Filter>
+    </ClCompile>
+    <ClCompile Include="Calendar.cpp">
+      <Filter>Calendar\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="dPanel.cpp">
+      <Filter>Calendar\Visual</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

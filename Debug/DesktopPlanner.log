@@ -1,4 +1,20 @@
 ﻿  Calendar.cpp
-C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(340,11): warning C4101: nPanel: неиспользованная локальная переменная
-C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(141): warning C4715: Date::GetPrevMonthDaysQuantity: значение возвращается не при всех путях выполнения
-  DesktopPlanner.vcxproj -> C:\Users\Трюндель\source\repos\DesktopPlanner\Debug\DesktopPlanner.exe
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(37,26): error C2039: "InitVisual": не является членом "Day".
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Day.h(4): message : см. объявление "Day"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(38,41): error C2039: "GetPanel": не является членом "Day".
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Day.h(4): message : см. объявление "Day"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(44,53): error C2572: Calendar::Calendar: переопределение аргумента по умолчанию: параметр 1
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.h(13): message : см. объявление "Calendar::Calendar"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(44,79): error C2572: Calendar::Calendar: переопределение аргумента по умолчанию: параметр 2
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.h(13): message : см. объявление "Calendar::Calendar"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(44,110): error C2572: Calendar::Calendar: переопределение аргумента по умолчанию: параметр 3
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.h(13): message : см. объявление "Calendar::Calendar"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(49,12): error C2061: синтаксическая ошибка: идентификатор "{ctor}"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(50,1): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Calendar.cpp(50,1): error C2447: {: отсутствует заголовок функции (возможно, используется формальный список старого типа)
+  cMain.cpp
+  Date.cpp
+  Day.cpp
+  dPanel.cpp
+  Создание кода...
+C:\Users\Трюндель\source\repos\DesktopPlanner\DesktopPlanner\Date.cpp(50): warning C4715: Date::GetPrevMonthDaysQuantity: значение возвращается не при всех путях выполнения

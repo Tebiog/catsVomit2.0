@@ -1,6 +1,6 @@
 ﻿#include "cMain.h"
 #include <wx/srchctrl.h>
-#include "Calendar.h"
+
 
 	/*class Day
 	{
@@ -61,15 +61,22 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Planner")//Параметры ба�
 	this->SetBackgroundColour(wxColour(48, 104, 68));//24, 44, 37
 	//=========================================================
 
+		
 
-	//>>===================Calendar_Container====================
+							//<<Dates_Panel>>				
+
+	//===================Main_Dates_Container==================
 	wxPanel* listPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(740, 440));
+	//=========================================================
 
 
-	//=====================Title_Container=====================
+	//==================Dates_Title_Container==================
 	wxPanel* datesTitlePanel = new wxPanel(listPanel, wxID_ANY, wxDefaultPosition, wxSize(740, 40));
 	datesTitlePanel->SetBackgroundColour(wxColour(24, 44, 37));
+	//=========================================================
 
+	
+	//=====================Dates_Switcher======================
 	wxPanel* monthAndYearSwitcher = new wxPanel(datesTitlePanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
 
 	wxStaticText* monthAndYear = new wxStaticText(monthAndYearSwitcher, wxID_ANY, "July, 2022", wxDefaultPosition);
@@ -95,17 +102,57 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Planner")//Параметры ба�
 	//=========================================================
 
 
+							//<<Calendar_Container>>
+							
 	//====================All_Dates_Container==================
-	wxPanel* datesPanel = new wxPanel(listPanel, wxID_ANY, wxDefaultPosition, wxSize(740, 370));
-	datesPanel->SetBackgroundColour(wxColour(24, 44, 37));
+	wxPanel* calendarPanel = new wxPanel(listPanel, wxID_ANY, wxDefaultPosition, wxSize(740, 370));
+	calendarPanel->SetBackgroundColour(wxColour(24, 44, 37));
+
+	wxPanel* daysOfWeekCols = new wxPanel(calendarPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+	wxStaticText* mon = new wxStaticText(daysOfWeekCols, wxID_ANY, "Monday", wxDefaultPosition, wxDefaultSize);
+	mon->SetForegroundColour(wxColour(48, 104, 68));
+	mon->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	wxStaticText* tue = new wxStaticText(daysOfWeekCols, wxID_ANY, "Tuesday", wxDefaultPosition, wxDefaultSize);
+	tue->SetForegroundColour(wxColour(48, 104, 68));
+	tue->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	wxStaticText* wed = new wxStaticText(daysOfWeekCols, wxID_ANY, "Wedsday", wxDefaultPosition, wxDefaultSize);
+	wed->SetForegroundColour(wxColour(48, 104, 68));
+	wed->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	wxStaticText* thu = new wxStaticText(daysOfWeekCols, wxID_ANY, "Thursday", wxDefaultPosition, wxDefaultSize);
+	thu->SetForegroundColour(wxColour(48, 104, 68));
+	thu->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	wxStaticText* fri = new wxStaticText(daysOfWeekCols, wxID_ANY, "Friday", wxDefaultPosition, wxDefaultSize);
+	fri->SetForegroundColour(wxColour(48, 104, 68));
+	fri->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	wxStaticText* sat = new wxStaticText(daysOfWeekCols, wxID_ANY, "Saturday", wxDefaultPosition, wxDefaultSize);
+	sat->SetForegroundColour(wxColour(48, 104, 68));
+	sat->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	wxStaticText* sun = new wxStaticText(daysOfWeekCols, wxID_ANY, "Sunday", wxDefaultPosition, wxDefaultSize);
+	sun->SetForegroundColour(wxColour(48, 104, 68));
+	sun->SetFont(wxFont(11, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_SEMIBOLD, false, wxEmptyString, wxFONTENCODING_DEFAULT));
+	
+	wxBoxSizer* daysColSizer = new wxBoxSizer(wxHORIZONTAL);
+	daysColSizer->Add(mon, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	daysColSizer->Add(tue, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	daysColSizer->Add(wed, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	daysColSizer->Add(thu, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	daysColSizer->Add(fri, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	daysColSizer->Add(sat, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	daysColSizer->Add(sun, 1, wxEXPAND | wxLEFT | wxTOP, 4);
+	
+	daysOfWeekCols->SetSizerAndFit(daysColSizer);
+
+	wxPanel* datesPanel = new wxPanel(calendarPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+	
+	wxBoxSizer* calendarSizer = new wxBoxSizer(wxVERTICAL);
+	calendarSizer->Add(daysOfWeekCols, 0, wxEXPAND);
+	calendarSizer->Add(datesPanel, 1, wxEXPAND | wxTOP, 5);
+
+	calendarPanel->SetSizerAndFit(calendarSizer);
 
 
-	InitCalendar(2, 2024, datesPanel);
+	//InitCalendar(2, 2024, datesPanel);
 	//=========================================================
-
-
-	//>>=========================================================
-
 
 
 	//>>===================Controls_Container===================
@@ -147,7 +194,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Planner")//Параметры ба�
 
 	wxBoxSizer* listSizer = new wxBoxSizer(wxVERTICAL);
 	listSizer->Add(datesTitlePanel, 0, wxEXPAND);
-	listSizer->Add(datesPanel, 1, wxEXPAND | wxTOP, 1);
+	listSizer->Add(calendarPanel, 1, wxEXPAND | wxTOP, 1);
 	listPanel->SetSizerAndFit(listSizer);
 
 }
